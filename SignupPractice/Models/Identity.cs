@@ -13,7 +13,7 @@ namespace SignupPractice.Models
         public string lastname { get; set; }
         public string email { get; set; }
         public string password { get; set; }
-        public int phone { get; set; }
+        public long phone { get; set; }
     }
 
     public class IdentityDBContext : DbContext
