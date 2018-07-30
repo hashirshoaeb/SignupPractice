@@ -1,5 +1,5 @@
-﻿@model IEnumerable<SignupPractice.Models.Identity>
-
+﻿@*@model IEnumerable<SignupPractice.Models.Identity>*@
+@model SignupPractice.Models.Identity
 @{
     ViewBag.Title = "Index";
 }
@@ -31,33 +31,65 @@
         </th>
         <th></th>
     </tr>
-
-@foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.id)
+            @Html.DisplayFor(model => model.id)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.firstname)
+            @Html.DisplayFor(model => model.firstname)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.lastname)
+            @Html.DisplayFor(model => model.lastname)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.email)
+            @Html.DisplayFor(model => model.email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.password)
+            @Html.DisplayFor(model => model.password)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.phone)
+            @Html.DisplayFor(model => model.phone)
         </td>
+        @try
+        {
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+            @Html.ActionLink("Details", "Details", new { id = Model.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = Model.id })
         </td>
+        }
+        catch
+        {
+
+        }
     </tr>
-}
+    @*@foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.firstname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lastname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.phone)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>
+            </tr>
+        }*@
 
 </table>

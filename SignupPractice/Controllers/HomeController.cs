@@ -31,9 +31,5 @@ namespace SignupPractice.Controllers
 
             return View();
         }
-        //public ActionResult Signup()
-        //{ 
-        //    return View();
-        //}
     }
 }

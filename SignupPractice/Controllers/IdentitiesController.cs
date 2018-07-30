@@ -15,10 +15,10 @@ namespace SignupPractice.Controllers
         private IdentityDBContext db = new IdentityDBContext();
 
         // GET: Identities
-        public ActionResult Index()
+        public ActionResult Index(/*TODO: int? id*/)
         {
-            //return View("Create");
-            return View(db.Identies.ToList());
+            // TODO: Login validation required...
+            return View(/*db.Identies.ToList()*/ /*TODO: pass identity*/);
         }
 
         // GET: Identities/Details/5
@@ -113,7 +113,7 @@ namespace SignupPractice.Controllers
             Identity identity = db.Identies.Find(id);
             db.Identies.Remove(identity);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index"); //TODO: change
         }
 
         protected override void Dispose(bool disposing)
@@ -134,13 +134,14 @@ namespace SignupPractice.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login([Bind(Include = "email,password")] Identity identity)
         {
-            if(db.identitycheck(identity.email, identity.password))
+            int? myidentity; Identity validIdentity = null;
+            if(null == (myidentity = db.identitycheck(identity.email, identity.password, out validIdentity)))
             {
-                ViewBag.Message = "login successfull";
+                ViewBag.Message = "login failed"; 
                 return View();
             }
-            ViewBag.Message = "login failed";
-            return View();
+            //ViewBag.Message = myidentity + "login successfull";
+            return View("Index", validIdentity);
         }
     }
 }
