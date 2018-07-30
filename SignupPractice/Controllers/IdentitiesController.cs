@@ -141,10 +141,6 @@ namespace SignupPractice.Controllers
             }
             ViewBag.Message = "login failed";
             return View();
-            // sql query [SELECT ID FROM DATBASE THIS TABLE THIS WHERE EMAIL = IDENTITY.EMAIL AND PASSWORD = IDENTITY.PASSWORD]
-            // check if email and password saved in identity parameter == to email and password in bd.identity
-            // get index(ID) // Identity identity = db.Identies.Find(id);
-            // build profile using that data.n
         }
     }
 }
