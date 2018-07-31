@@ -1,5 +1,5 @@
-﻿@model IEnumerable<SignupPractice.Models.Identity>
-
+﻿@*@model IEnumerable<SignupPractice.Models.Identity>*@
+@model SignupPractice.Models.Identity
 @{
     ViewBag.Title = "Index";
 }
@@ -75,6 +75,7 @@
         </tr>
 
         @foreach (var item in Model)
+
         {
             <tr>
                 <td>
@@ -102,5 +103,4 @@
                 </td>
             </tr>
         }
-
     </table>*@

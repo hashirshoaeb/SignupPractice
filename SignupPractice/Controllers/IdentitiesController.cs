@@ -13,12 +13,15 @@ namespace SignupPractice.Controllers
     public class IdentitiesController : Controller
     {
         private IdentityDBContext db = new IdentityDBContext();
-
+        private static int? authorized_user_id = null;
         // GET: Identities
-        public ActionResult Index()
+        public ActionResult Index(int? id )/*TODO: int? id*/ //done
         {
-            //return View("Create");
-            return View(db.Identies.ToList());
+            if (id == null)
+                return HttpNotFound();
+            else if (authorized_user_id != id) // TODO: Login validation required... //done
+                return RedirectToAction("Login");     
+            return View(db.Identies.Find(id));/*TODO: pass identity*/ //done
         }
 
         // GET: Identities/Details/5
@@ -33,7 +36,7 @@ namespace SignupPractice.Controllers
             {
                 return HttpNotFound();
             }
-            return View(identity);
+            return View(identity); // TODO: Login validation required...
         }
 
         // GET: Identities/Create
@@ -53,7 +56,7 @@ namespace SignupPractice.Controllers
             {
                 db.Identies.Add(identity);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { id = identity.id });
             }
 
             return View(identity);
@@ -85,7 +88,7 @@ namespace SignupPractice.Controllers
             {
                 db.Entry(identity).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { id = identity.id });
             }
             return View(identity);
         }
@@ -113,7 +116,7 @@ namespace SignupPractice.Controllers
             Identity identity = db.Identies.Find(id);
             db.Identies.Remove(identity);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index"); //TODO: change
         }
 
         protected override void Dispose(bool disposing)
@@ -134,13 +137,15 @@ namespace SignupPractice.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login([Bind(Include = "email,password")] Identity identity)
         {
-            if(db.identitycheck(identity.email, identity.password))
+            int? myidentity; Identity validIdentity = null;
+            if(null == (myidentity = db.identitycheck(identity.email, identity.password, out validIdentity)))
             {
-                ViewBag.Message = "login successfull";
+                ViewBag.Message = "login failed"; 
                 return View();
             }
-            ViewBag.Message = "login failed";
-            return View();
+            //ViewBag.Message = myidentity + "login successfull";
+            authorized_user_id = myidentity;
+            return RedirectToAction("Index", new { id = myidentity });
         }
     }
 }

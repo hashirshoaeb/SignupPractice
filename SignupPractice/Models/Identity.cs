@@ -20,15 +20,16 @@ namespace SignupPractice.Models
     {
         public DbSet<Identity> Identies { get; set; }
 
-        public bool identitycheck(string c_email, string c_password)
+        public int? identitycheck(string c_email, string c_password, out Identity identity)
         {
-            //var myIdentity = from e in Identies where e.email == c_email select e;
-            foreach(Identity i in Identies)
+            identity = null;
+            if( null != (identity = Identies.SingleOrDefault(x => x.email == c_email))) //email verified
             {
-                if (i.email == c_email && i.password == c_password)
-                    return true;
+                if (identity.password == c_password) // password varified
+                    return identity.id;
+                return null;
             }
-            return false;
+            return null;
         }
     }
 }
