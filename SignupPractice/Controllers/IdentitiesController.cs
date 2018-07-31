@@ -13,12 +13,15 @@ namespace SignupPractice.Controllers
     public class IdentitiesController : Controller
     {
         private IdentityDBContext db = new IdentityDBContext();
-
+        private static int? authorized_user_id = null;
         // GET: Identities
-        public ActionResult Index(/*TODO: int? id*/)
+        public ActionResult Index(int? id )/*TODO: int? id*/ //done
         {
-            // TODO: Login validation required...
-            return View(/*db.Identies.ToList()*/ /*TODO: pass identity*/);
+            if (id == null)
+                return HttpNotFound();
+            else if (authorized_user_id != id) // TODO: Login validation required... //done
+                return RedirectToAction("Login");     
+            return View(db.Identies.Find(id));/*TODO: pass identity*/ //done
         }
 
         // GET: Identities/Details/5
@@ -33,7 +36,7 @@ namespace SignupPractice.Controllers
             {
                 return HttpNotFound();
             }
-            return View(identity);
+            return View(identity); // TODO: Login validation required...
         }
 
         // GET: Identities/Create
@@ -53,7 +56,7 @@ namespace SignupPractice.Controllers
             {
                 db.Identies.Add(identity);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { id = identity.id });
             }
 
             return View(identity);
@@ -85,7 +88,7 @@ namespace SignupPractice.Controllers
             {
                 db.Entry(identity).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { id = identity.id });
             }
             return View(identity);
         }
@@ -141,7 +144,8 @@ namespace SignupPractice.Controllers
                 return View();
             }
             //ViewBag.Message = myidentity + "login successfull";
-            return View("Index", validIdentity);
+            authorized_user_id = myidentity;
+            return RedirectToAction("Index", new { id = myidentity });
         }
     }
 }
