@@ -2,6 +2,7 @@
 @model SignupPractice.Models.Identity
 @{
     ViewBag.Title = "Index";
+    ViewBag.username = Model.firstname + " " + Model.lastname;
 }
 
 @*<h2>Index</h2>*@
@@ -27,30 +28,28 @@
                 <li><a href="#">Reports</a></li>
             </ul>
         </div>
-            <li class="dropdown">
-                <hr />
-                <div class="container">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <span class="glyphicon glyphicon-user"></span>User Name<span class="caret"></span>
-                    </a><a href="#"><span style="padding-right:115px;"></span><span class="glyphicon glyphicon-plus"></span></a><hr />
-                    <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="#">Portfolio</a></li>
-                        <li><a href="#">Notifications</a></li>
-                        <li><a href="#">Settings</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Update Profile</a></li>
-                    </ul>
-                    </div>
-</li>
-</ul>
+        <li class="dropdown">
+            <hr />
+            <div class="container">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <span class="glyphicon glyphicon-user"></span>@ViewBag.username<span class="caret"></span>
+                </a><a href="#"><span style="padding-right:115px;"></span><span class="glyphicon glyphicon-plus"></span></a><hr />
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">Notifications</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Update Profile</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
 
 </div>
 <div class="col-md-10">
-    
-</div>
     @*<p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+            @Html.ActionLink("Create New", "Create")
+        </p>*@
     <table class="table">
         <tr>
             <th>
@@ -73,34 +72,37 @@
             </th>
             <th></th>
         </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => Model.id)
+            </td>
+            <td>
+                @Html.DisplayFor(model => Model.firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(model => Model.lastname)
+            </td>
+            <td>
+                @Html.DisplayFor(model => Model.email)
+            </td>
+            <td>
+                @Html.DisplayFor(model => Model.password)
+            </td>
+            <td>
+                @Html.DisplayFor(model => Model.phone)
+            </td>
+            @try
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = Model.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = Model.id })
+                </td>
+            }
+            catch
+            {
 
-        @foreach (var item in Model)
-
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.firstname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.lastname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.password)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.phone)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
-                </td>
-            </tr>
-        }
-    </table>*@
+            }
+            </tr>      
+    </table>
+</div>
