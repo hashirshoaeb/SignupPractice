@@ -156,6 +156,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IdentitiesController.cs" />
+    <Compile Include="Controllers\ProjectsEntitiesController.cs" />
+    <Compile Include="Controllers\TeacherEntitiesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -167,8 +169,19 @@
     <Compile Include="Migrations\201807290906184_DataAnnotations.Designer.cs">
       <DependentUpon>201807290906184_DataAnnotations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808112048212_DataAnnotation.cs" />
+    <Compile Include="Migrations\201808112048212_DataAnnotation.Designer.cs">
+      <DependentUpon>201808112048212_DataAnnotation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808140937021_DataAnnotaions.cs" />
+    <Compile Include="Migrations\201808140937021_DataAnnotaions.Designer.cs">
+      <DependentUpon>201808140937021_DataAnnotaions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Identity.cs" />
+    <Compile Include="Models\projectguidancecommitteeEntity.cs" />
+    <Compile Include="Models\ProjectsEntity.cs" />
+    <Compile Include="Models\TeacherEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +231,16 @@
     <Content Include="Views\Identities\Index.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\Identities\Login.cshtml" />
+    <Content Include="Views\TeacherEntities\Create.cshtml" />
+    <Content Include="Views\TeacherEntities\Delete.cshtml" />
+    <Content Include="Views\TeacherEntities\Details.cshtml" />
+    <Content Include="Views\TeacherEntities\Edit.cshtml" />
+    <Content Include="Views\TeacherEntities\Index.cshtml" />
+    <Content Include="Views\ProjectsEntities\Create.cshtml" />
+    <Content Include="Views\ProjectsEntities\Delete.cshtml" />
+    <Content Include="Views\ProjectsEntities\Details.cshtml" />
+    <Content Include="Views\ProjectsEntities\Edit.cshtml" />
+    <Content Include="Views\ProjectsEntities\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -241,6 +264,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807290906184_DataAnnotations.resx">
       <DependentUpon>201807290906184_DataAnnotations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808112048212_DataAnnotation.resx">
+      <DependentUpon>201808112048212_DataAnnotation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808140937021_DataAnnotaions.resx">
+      <DependentUpon>201808140937021_DataAnnotaions.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

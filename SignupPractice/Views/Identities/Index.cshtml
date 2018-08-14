@@ -1,5 +1,20 @@
 ﻿@*@model IEnumerable<SignupPractice.Models.Identity>*@
 @model SignupPractice.Models.Identity
+
+@if (ViewBag.Authentication == true)
+{
+    {
+        Layout = "~/Views/Shared/_Layout2.cshtml";
+    }
+}
+else
+{
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
+
+
 @{
     ViewBag.Title = "Index";
     ViewBag.username = Model.firstname + " " + Model.lastname;
@@ -32,7 +47,7 @@
             <hr />
             <div class="container">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <span class="glyphicon glyphicon-user"></span>@ViewBag.username<span class="caret"></span>
+                    <span class="glyphicon glyphicon-user"></span>@ViewBag.username<span class="caret"></span>
                 </a><a href="#"><span style="padding-right:115px;"></span><span class="glyphicon glyphicon-plus"></span></a><hr />
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li><a href="#">Portfolio</a></li>
@@ -103,6 +118,6 @@
             {
 
             }
-            </tr>      
+        </tr>
     </table>
 </div>

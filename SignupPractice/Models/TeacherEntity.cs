@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SignupPractice.Models
 {
-    public class Identity
+    public class TeacherEntity
     {
         public int id { get; set; }
 
@@ -18,6 +18,13 @@ namespace SignupPractice.Models
         [Required]
         [Display(Name = "Last Name")]
         public string lastname { get; set; }
+
+        [Required]
+        [Display(Name = "Designation")]
+        public string designation { get; set; }
+
+        //public string specification { get; set; }
+        //public string personalinfo { get; set; }
 
         [Required]
         [EmailAddress]
@@ -37,20 +44,9 @@ namespace SignupPractice.Models
         public string phone { get; set; }
     }
 
-    public class IdentityDBContext : DbContext
+    public class TeacherEntityDBContext : DbContext
     {
-        public DbSet<Identity> Identies { get; set; }
-
-        public int? identitycheck(string c_email, string c_password, out Identity identity)
-        {
-            identity = null;
-            if( null != (identity = Identies.SingleOrDefault(x => x.email == c_email))) //email verified
-            {
-                if (identity.password == c_password) // password varified
-                    return identity.id;
-                return null;
-            }
-            return null;
-        }
+        public DbSet<TeacherEntity> teacherEntities { get; set; }
     }
+
 }

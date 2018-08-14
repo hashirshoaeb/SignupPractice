@@ -1,0 +1,66 @@
+﻿@model SignupPractice.Models.ProjectsEntity
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProjectsEntity</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.field)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.field)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateofcreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateofcreation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.deadline)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.deadline)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.teacher_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.teacher_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.progress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.progress)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -20,8 +20,12 @@ namespace SignupPractice.Controllers
             if (id == null)
                 return HttpNotFound();
             else if (authorized_user_id != id) // TODO: Login validation required... //done
-                return RedirectToAction("Login");     
-            return View(db.Identies.Find(id));/*TODO: pass identity*/ //done
+                return RedirectToAction("Login");
+            else
+            {
+                ViewBag.Authentication = true;
+                return View(db.Identies.Find(id));/*TODO: pass identity*/ //done
+            }    
         }
 
         // GET: Identities/Details/5
