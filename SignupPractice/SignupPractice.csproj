@@ -177,6 +177,10 @@
     <Compile Include="Migrations\201808140937021_DataAnnotaions.Designer.cs">
       <DependentUpon>201808140937021_DataAnnotaions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808271820469_DataAnnotations1.cs" />
+    <Compile Include="Migrations\201808271820469_DataAnnotations1.Designer.cs">
+      <DependentUpon>201808271820469_DataAnnotations1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Identity.cs" />
     <Compile Include="Models\projectguidancecommitteeEntity.cs" />
@@ -270,6 +274,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808140937021_DataAnnotaions.resx">
       <DependentUpon>201808140937021_DataAnnotaions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808271820469_DataAnnotations1.resx">
+      <DependentUpon>201808271820469_DataAnnotations1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
