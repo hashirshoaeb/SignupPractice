@@ -33,5 +33,9 @@ namespace SignupPractice.Models
     public class ProjectsEntityDBContext : DbContext
     {
         public DbSet<ProjectsEntity> projectsEntities { get; set; }
+
+        public System.Data.Entity.DbSet<SignupPractice.Models.TeacherEntity> TeacherEntities { get; set; }
     }
 }
+
+//TODO: ProjectsEntity k ander description ki entity dalni, column matlab

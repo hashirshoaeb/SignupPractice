@@ -13,23 +13,24 @@ namespace SignupPractice.Controllers
     public class IdentitiesController : Controller
     {
         private IdentityDBContext db = new IdentityDBContext();
-        private static int? authorized_user_id = null;
+        //private static int? authorized_user_id = null;
         // GET: Identities
-        public ActionResult Index(int? id )/*TODO: int? id*/ //done
+        public ActionResult Index(/*int? id*/ )/*TODO: int? id*/ //done
         {
-            if (id == null)
-                return HttpNotFound();
-            else if (authorized_user_id != id) // TODO: Login validation required... //done
-                return RedirectToAction("Login");
-            else
-            {
-                ViewBag.Authentication = true;
-                return View(db.Identies.Find(id));/*TODO: pass identity*/ //done
-            }    
+            //if (id == null)
+              //  return HttpNotFound();
+            //else if (authorized_user_id != id) // TODO: Login validation required... //done
+             //   return RedirectToAction("Login");
+            //else
+            //{
+            //    ViewBag.Authentication = true;
+                return View();/*TODO: pass identity*/ //done
+            //}    
         }
+     
 
-        // GET: Identities/Details/5
-        public ActionResult Details(int? id)
+            // GET: Identities/Details/5
+            public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -60,7 +61,7 @@ namespace SignupPractice.Controllers
             {
                 db.Identies.Add(identity);
                 db.SaveChanges();
-                return RedirectToAction("Index", new { id = identity.id });
+                return RedirectToAction("Index"/*, new { id = identity.id }*/);
             }
 
             return View(identity);
@@ -92,7 +93,7 @@ namespace SignupPractice.Controllers
             {
                 db.Entry(identity).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index", new { id = identity.id });
+                return RedirectToAction("Index"/*, new { id = identity.id }*/);
             }
             return View(identity);
         }
@@ -148,8 +149,8 @@ namespace SignupPractice.Controllers
                 return View();
             }
             //ViewBag.Message = myidentity + "login successfull";
-            authorized_user_id = myidentity;
-            return RedirectToAction("Index", new { id = myidentity });
+            //authorized_user_id = myidentity;
+            return RedirectToAction("Index"/*, new { id = myidentity }*/);
         }
     }
 }
