@@ -123,5 +123,25 @@ namespace SignupPractice.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login([Bind(Include = "email,password")] TeacherEntity teacherEntity)
+        {
+            int? myidentity; TeacherEntity validIdentity = null;
+            if (null == (myidentity = db.identitycheck(teacherEntity.email, teacherEntity.password, out validIdentity)))
+            {
+                ViewBag.Message = "login failed";
+                return View();
+            }
+            //ViewBag.Message = myidentity + "login successfull";
+            //authorized_user_id = myidentity;
+            return RedirectToAction("Index", new { id = myidentity });
+        }
     }
 }

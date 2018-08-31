@@ -47,6 +47,18 @@ namespace SignupPractice.Models
     public class TeacherEntityDBContext : DbContext
     {
         public DbSet<TeacherEntity> teacherEntities { get; set; }
+
+        public int? identitycheck(string c_email, string c_password, out TeacherEntity teacherEntity)
+        {
+            teacherEntity = null;
+            if (null != (teacherEntity = teacherEntities.SingleOrDefault(x => x.email == c_email))) //email verified
+            {
+                if (teacherEntity.password == c_password) // password varified
+                    return teacherEntity.id;
+                return null;
+            }
+            return null;
+        }
     }
 
 }
