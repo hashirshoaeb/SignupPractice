@@ -151,5 +151,10 @@ namespace SignupPractice.Controllers
             authorized_user_id = myidentity;
             return RedirectToAction("Index", new { id = myidentity });
         }
+        public ActionResult Logout()
+        {
+            authorized_user_id = null;
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

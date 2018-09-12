@@ -13,11 +13,20 @@ namespace SignupPractice.Controllers
     public class TeacherEntitiesController : Controller
     {
         private TeacherEntityDBContext db = new TeacherEntityDBContext();
-
+        private static int? authorized_user_id = null;
         // GET: TeacherEntities
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            return View(db.teacherEntities.ToList());
+            if (id == null)
+                return HttpNotFound();
+            else if (authorized_user_id != id) // TODO: Login validation required... //done
+                return RedirectToAction("Login");
+            else
+            {
+                ViewBag.Authentication = true;
+                return View(db.teacherEntities.Find(id));/*TODO: pass identity*/ //done
+            }
+            //return View(db.teacherEntities.ToList());
         }
 
         // GET: TeacherEntities/Details/5
@@ -32,7 +41,7 @@ namespace SignupPractice.Controllers
             {
                 return HttpNotFound();
             }
-            return View(teacherEntity);
+            return View(teacherEntity); // TODO: Login validation required...
         }
 
         // GET: TeacherEntities/Create
@@ -52,7 +61,7 @@ namespace SignupPractice.Controllers
             {
                 db.teacherEntities.Add(teacherEntity);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { id = teacherEntity.id});
             }
 
             return View(teacherEntity);
@@ -84,7 +93,7 @@ namespace SignupPractice.Controllers
             {
                 db.Entry(teacherEntity).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { id = teacherEntity.id});
             }
             return View(teacherEntity);
         }
@@ -112,7 +121,7 @@ namespace SignupPractice.Controllers
             TeacherEntity teacherEntity = db.teacherEntities.Find(id);
             db.teacherEntities.Remove(teacherEntity);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index"); //TODO: change
         }
 
         protected override void Dispose(bool disposing)
@@ -140,8 +149,13 @@ namespace SignupPractice.Controllers
                 return View();
             }
             //ViewBag.Message = myidentity + "login successfull";
-            //authorized_user_id = myidentity;
+            authorized_user_id = myidentity;
             return RedirectToAction("Index", new { id = myidentity });
+        }
+        public ActionResult Logout()
+        {
+            authorized_user_id = null;
+            return RedirectToAction("Index", "Home");
         }
     }
 }
