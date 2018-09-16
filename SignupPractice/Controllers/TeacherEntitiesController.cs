@@ -40,8 +40,11 @@ namespace SignupPractice.Controllers
             if (teacherEntity == null)
             {
                 return HttpNotFound();
-            }
-            return View(teacherEntity); // TODO: Login validation required...
+            } 
+            else if (authorized_user_id == id)
+                return View(teacherEntity); // TODO: Login validation required... //done
+            else
+                return RedirectToAction("Login");
         }
 
         // GET: TeacherEntities/Create
@@ -79,7 +82,10 @@ namespace SignupPractice.Controllers
             {
                 return HttpNotFound();
             }
-            return View(teacherEntity);
+            else if (authorized_user_id == id)
+                return View(teacherEntity);  // TODO: Login validation required... //done
+            else
+                return RedirectToAction("Login"); 
         }
 
         // POST: TeacherEntities/Edit/5
@@ -110,7 +116,10 @@ namespace SignupPractice.Controllers
             {
                 return HttpNotFound();
             }
-            return View(teacherEntity);
+            else if (authorized_user_id == id)
+                return View(teacherEntity);   // TODO: Login validation required... //done
+            else
+                return RedirectToAction("Login");
         }
 
         // POST: TeacherEntities/Delete/5
@@ -121,7 +130,7 @@ namespace SignupPractice.Controllers
             TeacherEntity teacherEntity = db.teacherEntities.Find(id);
             db.teacherEntities.Remove(teacherEntity);
             db.SaveChanges();
-            return RedirectToAction("Index"); //TODO: change
+            return RedirectToAction("Index", "Home"); //TODO: change //done
         }
 
         protected override void Dispose(bool disposing)

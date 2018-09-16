@@ -233,7 +233,7 @@
     <Content Include="Views\Identities\Details.cshtml" />
     <Content Include="Views\Identities\Edit.cshtml" />
     <Content Include="Views\Identities\Index.cshtml" />
-    <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\Shared\_LayoutT.cshtml" />
     <Content Include="Views\Identities\Login.cshtml" />
     <Content Include="Views\TeacherEntities\Create.cshtml" />
     <Content Include="Views\TeacherEntities\Delete.cshtml" />
@@ -246,6 +246,7 @@
     <Content Include="Views\ProjectsEntities\Edit.cshtml" />
     <Content Include="Views\ProjectsEntities\Index.cshtml" />
     <Content Include="Views\TeacherEntities\Login.cshtml" />
+    <Content Include="Views\Shared\_LayoutS.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

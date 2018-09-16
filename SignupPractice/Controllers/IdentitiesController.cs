@@ -40,7 +40,10 @@ namespace SignupPractice.Controllers
             {
                 return HttpNotFound();
             }
-            return View(identity); // TODO: Login validation required...
+            else if (authorized_user_id == id)
+                return View(identity); // TODO: Login validation required... // done
+            else
+                return RedirectToAction("Login");
         }
 
         // GET: Identities/Create
@@ -78,7 +81,10 @@ namespace SignupPractice.Controllers
             {
                 return HttpNotFound();
             }
-            return View(identity);
+            else if (authorized_user_id == id)
+                return View(identity); // TODO: Login validation required... //done
+            else
+                return RedirectToAction("Login");
         }
 
         // POST: Identities/Edit/5
@@ -109,7 +115,10 @@ namespace SignupPractice.Controllers
             {
                 return HttpNotFound();
             }
-            return View(identity);
+            else if (authorized_user_id == id)
+                return View(identity); // TODO: Login validation required... //done
+            else
+                return RedirectToAction("Login");
         }
 
         // POST: Identities/Delete/5
@@ -120,7 +129,7 @@ namespace SignupPractice.Controllers
             Identity identity = db.Identies.Find(id);
             db.Identies.Remove(identity);
             db.SaveChanges();
-            return RedirectToAction("Index"); //TODO: change
+            return RedirectToAction("Index", "Home"); //TODO: change //done
         }
 
         protected override void Dispose(bool disposing)

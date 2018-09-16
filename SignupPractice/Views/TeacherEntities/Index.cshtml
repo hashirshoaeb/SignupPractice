@@ -4,7 +4,7 @@
 @if (ViewBag.Authentication == true)
 {
     {
-        Layout = "~/Views/Shared/_Layout2.cshtml";
+        Layout = "~/Views/Shared/_LayoutT.cshtml";
     }
 }
 else
@@ -26,7 +26,7 @@ else
 </p>*@
 <div class="col-md-2">
     <ul class="nav nav-pills nav-stacked">
-        <li><a href="~/ProjectsEntities/Create">Create Project</a></li>
+        <li>@*@Html.ActionLink("Create Project","Create",)*@ @*<a href="~/ProjectsEntities/Create">Create Project</a>*@</li>
         <li><a href="#demo" data-toggle="collapse"> View Projects <span class="caret"></span></a></li>
         <div id="demo" class="collapse">
             <ul class="nav nav-pills nav-stacked">
