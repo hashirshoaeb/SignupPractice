@@ -20,104 +20,112 @@ else
     ViewBag.username = Model.firstname + " " + Model.lastname;
 }
 
-@*<h2>Index</h2>*@
-<div class="col-md-2">
-    <ul class="nav nav-pills nav-stacked">
-        <li><a href="#">Create Project</a></li>
-        <li><a href="#demo" data-toggle="collapse"> View Projects <span class="caret"></span></a></li>
-        <div id="demo" class="collapse">
-            <ul class="nav nav-pills nav-stacked">
-                <li><a href="#">Current</a></li>
-                <li><a href="#">Previous</a></li>
-            </ul>
-        </div>
-        <li><a href="#">Mark Project</a></li>
-        <li><a href="#">Project Meetings</a></li>
-        <li><a href="#moredemo" data-toggle="collapse">More<span class="caret"></span></a></li>
-        <div id="moredemo" class="collapse">
-            <ul class="nav nav-pills nav-stacked">
-                <li><a href="#">Co-supervise Project</a></li>
-                <li><a href="#">Supervision Requests</a></li>
-                <li><a href="#">Project Requests</a></li>
-                <li><a href="#">Projects Progress</a></li>
-                <li><a href="#">Reports</a></li>
-            </ul>
-        </div>
-        <li class="dropdown">
-            <hr />
-            <div class="container">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <span class="glyphicon glyphicon-user"></span>@ViewBag.username<span class="caret"></span>
-                </a><a href="#"><span style="padding-right:115px;"></span><span class="glyphicon glyphicon-plus"></span></a><hr />
-                <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="#">Portfolio</a></li>
-                    <li><a href="#">Notifications</a></li>
-                    <li><a href="#">Settings</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Update Profile</a></li>
-                </ul>
+<div class="container">
+
+    <div class="col-md-2">
+        <ul class="nav nav-pills nav-stacked">
+            <li><a data-toggle="pill" href="#profile">Your Profile</a></li>
+            <li><a data-toggle="pill" href="#projectsearch">Search Projects</a></li>
+        </ul>
+    </div>
+
+    <div class="col-md-10">
+        <div class="tab-content">
+            <div id="profile" class="tab-pane fade in active">
+
+                <div class="container"> @*profile*@
+                <div class="panel ">
+                    <div class="panel-body">
+                        <div class=" col-md-4 text-center">
+                        <img class="img-thumbnail" style="width:200px; height:200px;" src="#" />
+                        </div>
+                        <div class=" col-md-8">
+                            <h2>STUDENT NAME</h2>
+                            <p>details..</p>
+                        </div>                        
+                    </div>
+                </div>
+                </div>
+
+                <h2>Your Projects</h2><hr />
+                <div class="panel panel-default" style="width:20rem;">
+                    <div class="panel-heading"><h3>Project title</h3></div>
+                    <div class="panel-body">                      
+                        <div class="panel-info"><p> helo ae eamf fd rknam f ldsjen sdkles nd dlfkns </p></div>
+                        <a href="#" class="btn btn-primary">click</a> 
+                    </div>
+                </div>
             </div>
-        </li>
-    </ul>
+            <div id="projectsearch" class="tab-pane fade">
+                <h3>Projects list which is being offered</h3>
+                @{
+                    Html.RenderAction("hello", "ProjectsEntities");
+                 }
+                <p>search functionality Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>               
+        </div>
+    </div>
 
 </div>
-<div class="col-md-10">
-    @*<p>
-            @Html.ActionLink("Create New", "Create")
-        </p>*@
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.firstname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.lastname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.password)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.phone)
-            </th>
-            <th></th>
-        </tr>
-        <tr>
-            <td>
-                @Html.DisplayFor(model => Model.id)
-            </td>
-            <td>
-                @Html.DisplayFor(model => Model.firstname)
-            </td>
-            <td>
-                @Html.DisplayFor(model => Model.lastname)
-            </td>
-            <td>
-                @Html.DisplayFor(model => Model.email)
-            </td>
-            <td>
-                @Html.DisplayFor(model => Model.password)
-            </td>
-            <td>
-                @Html.DisplayFor(model => Model.phone)
-            </td>
-            @try
-            {
+<div class="container">
+    <div class="col-md-10">
+        @*<p>
+                @Html.ActionLink("Create New", "Create")
+            </p>*@
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.firstname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.lastname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.password)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.phone)
+                </th>
+                <th></th>
+            </tr>
+            <tr>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-                    @Html.ActionLink("Details", "Details", new { id = Model.id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = Model.id })
+                    @Html.DisplayFor(model => Model.id)
                 </td>
-            }
-            catch
-            {
+                <td>
+                    @Html.DisplayFor(model => Model.firstname)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => Model.lastname)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => Model.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => Model.password)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => Model.phone)
+                </td>
+                @try
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+                        @Html.ActionLink("Details", "Details", new { id = Model.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = Model.id })
+                    </td>
+                }
+                catch
+                {
 
-            }
-        </tr>
-    </table>
+                }
+            </tr>
+        </table>
+    </div>
 </div>

@@ -247,6 +247,7 @@
     <Content Include="Views\ProjectsEntities\Index.cshtml" />
     <Content Include="Views\TeacherEntities\Login.cshtml" />
     <Content Include="Views\Shared\_LayoutS.cshtml" />
+    <Content Include="Views\ProjectsEntities\hello.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
