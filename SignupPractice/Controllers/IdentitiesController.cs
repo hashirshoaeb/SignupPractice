@@ -12,7 +12,8 @@ namespace SignupPractice.Controllers
 {
     //lets do it .....
     public class IdentitiesController : Controller
-    {
+    { 
+//Ali here
         private IdentityDBContext db = new IdentityDBContext();
         private static int? authorized_user_id = null;
         // GET: Identities
@@ -41,7 +42,10 @@ namespace SignupPractice.Controllers
             {
                 return HttpNotFound();
             }
-            return View(identity); // TODO: Login validation required...
+            else if (authorized_user_id == id)
+                return View(identity); // TODO: Login validation required... // done
+            else
+                return RedirectToAction("Login");
         }
 
         // GET: Identities/Create
@@ -79,7 +83,10 @@ namespace SignupPractice.Controllers
             {
                 return HttpNotFound();
             }
-            return View(identity);
+            else if (authorized_user_id == id)
+                return View(identity); // TODO: Login validation required... //done
+            else
+                return RedirectToAction("Login");
         }
 
         // POST: Identities/Edit/5
@@ -110,7 +117,10 @@ namespace SignupPractice.Controllers
             {
                 return HttpNotFound();
             }
-            return View(identity);
+            else if (authorized_user_id == id)
+                return View(identity); // TODO: Login validation required... //done
+            else
+                return RedirectToAction("Login");
         }
 
         // POST: Identities/Delete/5
@@ -121,7 +131,7 @@ namespace SignupPractice.Controllers
             Identity identity = db.Identies.Find(id);
             db.Identies.Remove(identity);
             db.SaveChanges();
-            return RedirectToAction("Index"); //TODO: change
+            return RedirectToAction("Index", "Home"); //TODO: change //done
         }
 
         protected override void Dispose(bool disposing)
@@ -151,6 +161,11 @@ namespace SignupPractice.Controllers
             //ViewBag.Message = myidentity + "login successfull";
             authorized_user_id = myidentity;
             return RedirectToAction("Index", new { id = myidentity });
+        }
+        public ActionResult Logout()
+        {
+            authorized_user_id = null;
+            return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -13,11 +13,20 @@ namespace SignupPractice.Controllers
     public class TeacherEntitiesController : Controller
     {
         private TeacherEntityDBContext db = new TeacherEntityDBContext();
-
+        private static int? authorized_user_id = null;
         // GET: TeacherEntities
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            return View(db.teacherEntities.ToList());
+            if (id == null)
+                return HttpNotFound();
+            else if (authorized_user_id != id) // TODO: Login validation required... //done
+                return RedirectToAction("Login");
+            else
+            {
+                ViewBag.Authentication = true;
+                return View(db.teacherEntities.Find(id));/*TODO: pass identity*/ //done
+            }
+            //return View(db.teacherEntities.ToList());
         }
 
         // GET: TeacherEntities/Details/5
@@ -31,8 +40,11 @@ namespace SignupPractice.Controllers
             if (teacherEntity == null)
             {
                 return HttpNotFound();
-            }
-            return View(teacherEntity);
+            } 
+            else if (authorized_user_id == id)
+                return View(teacherEntity); // TODO: Login validation required... //done
+            else
+                return RedirectToAction("Login");
         }
 
         // GET: TeacherEntities/Create
@@ -52,7 +64,7 @@ namespace SignupPractice.Controllers
             {
                 db.teacherEntities.Add(teacherEntity);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { id = teacherEntity.id});
             }
 
             return View(teacherEntity);
@@ -70,7 +82,10 @@ namespace SignupPractice.Controllers
             {
                 return HttpNotFound();
             }
-            return View(teacherEntity);
+            else if (authorized_user_id == id)
+                return View(teacherEntity);  // TODO: Login validation required... //done
+            else
+                return RedirectToAction("Login"); 
         }
 
         // POST: TeacherEntities/Edit/5
@@ -84,7 +99,7 @@ namespace SignupPractice.Controllers
             {
                 db.Entry(teacherEntity).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { id = teacherEntity.id});
             }
             return View(teacherEntity);
         }
@@ -101,7 +116,10 @@ namespace SignupPractice.Controllers
             {
                 return HttpNotFound();
             }
-            return View(teacherEntity);
+            else if (authorized_user_id == id)
+                return View(teacherEntity);   // TODO: Login validation required... //done
+            else
+                return RedirectToAction("Login");
         }
 
         // POST: TeacherEntities/Delete/5
@@ -112,7 +130,7 @@ namespace SignupPractice.Controllers
             TeacherEntity teacherEntity = db.teacherEntities.Find(id);
             db.teacherEntities.Remove(teacherEntity);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home"); //TODO: change //done
         }
 
         protected override void Dispose(bool disposing)
@@ -122,6 +140,31 @@ namespace SignupPractice.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login([Bind(Include = "email,password")] TeacherEntity teacherEntity)
+        {
+            int? myidentity; TeacherEntity validIdentity = null;
+            if (null == (myidentity = db.identitycheck(teacherEntity.email, teacherEntity.password, out validIdentity)))
+            {
+                ViewBag.Message = "login failed";
+                return View();
+            }
+            //ViewBag.Message = myidentity + "login successfull";
+            authorized_user_id = myidentity;
+            return RedirectToAction("Index", new { id = myidentity });
+        }
+        public ActionResult Logout()
+        {
+            authorized_user_id = null;
+            return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -14,6 +14,10 @@ namespace SignupPractice.Controllers
     {
         private ProjectsEntityDBContext db = new ProjectsEntityDBContext();
 
+        public PartialViewResult hello()
+        {
+            return PartialView(db.projectsEntities.ToList());
+        }
         // GET: ProjectsEntities
         public ActionResult Index()
         {
