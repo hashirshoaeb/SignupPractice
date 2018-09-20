@@ -1,14 +1,69 @@
-﻿@model IEnumerable<SignupPractice.Models.TeacherEntity>
+﻿@*@model IEnumerable<SignupPractice.Models.TeacherEntity>*@
+@model SignupPractice.Models.TeacherEntity
+
+@if (ViewBag.Authentication == true)
+{
+    {
+        Layout = "~/Views/Shared/_LayoutT.cshtml";
+    }
+}
+else
+{
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
 
 @{
     ViewBag.Title = "Index";
+    ViewBag.username = Model.firstname + " " + Model.lastname;
 }
 
-<h2>Index</h2>
+@*<h2>Index</h2>*@
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
+<div class="col-md-2">
+    <ul class="nav nav-pills nav-stacked">
+        <li>@*@Html.ActionLink("Create Project","Create",)*@ @*<a href="~/ProjectsEntities/Create">Create Project</a>*@</li>
+        <li><a href="#demo" data-toggle="collapse"> View Projects <span class="caret"></span></a></li>
+        <div id="demo" class="collapse">
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="#">Current</a></li>
+                <li><a href="#">Previous</a></li>
+            </ul>
+        </div>
+        <li><a href="#">Mark Project</a></li>
+        <li><a href="#">Project Meetings</a></li>
+        <li><a href="#moredemo" data-toggle="collapse">More<span class="caret"></span></a></li>
+        <div id="moredemo" class="collapse">
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="#">Co-supervise Project</a></li>
+                <li><a href="#">Supervision Requests</a></li>
+                <li><a href="#">Project Requests</a></li>
+                <li><a href="#">Projects Progress</a></li>
+                <li><a href="#">Reports</a></li>
+            </ul>
+        </div>
+        <li class="dropdown">
+            <hr />
+            <div class="container">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="glyphicon glyphicon-user"></span>@ViewBag.username<span class="caret"></span>
+                </a><a href="#"><span style="padding-right:115px;"></span><span class="glyphicon glyphicon-plus"></span></a><hr />
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">Notifications</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Update Profile</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+
+</div>
 <table class="table">
     <tr>
         <th>
@@ -32,32 +87,36 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.firstname)
+            @Html.DisplayFor(model => Model.firstname)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.lastname)
+            @Html.DisplayFor(model => Model.lastname)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.designation)
+            @Html.DisplayFor(model => Model.designation)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.email)
+            @Html.DisplayFor(model => Model.email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.password)
+            @Html.DisplayFor(model => Model.password)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.phone)
+            @Html.DisplayFor(model => Model.phone)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+        @try
+        {
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+                @Html.ActionLink("Details", "Details", new { id = Model.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = Model.id })
+            </td>
+        }
+        catch
+        {
 
+        }
+        </tr>
 </table>

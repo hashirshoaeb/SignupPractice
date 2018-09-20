@@ -177,6 +177,10 @@
     <Compile Include="Migrations\201808140937021_DataAnnotaions.Designer.cs">
       <DependentUpon>201808140937021_DataAnnotaions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808271820469_DataAnnotations1.cs" />
+    <Compile Include="Migrations\201808271820469_DataAnnotations1.Designer.cs">
+      <DependentUpon>201808271820469_DataAnnotations1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Identity.cs" />
     <Compile Include="Models\projectguidancecommitteeEntity.cs" />
@@ -229,7 +233,7 @@
     <Content Include="Views\Identities\Details.cshtml" />
     <Content Include="Views\Identities\Edit.cshtml" />
     <Content Include="Views\Identities\Index.cshtml" />
-    <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\Shared\_LayoutT.cshtml" />
     <Content Include="Views\Identities\Login.cshtml" />
     <Content Include="Views\TeacherEntities\Create.cshtml" />
     <Content Include="Views\TeacherEntities\Delete.cshtml" />
@@ -241,6 +245,9 @@
     <Content Include="Views\ProjectsEntities\Details.cshtml" />
     <Content Include="Views\ProjectsEntities\Edit.cshtml" />
     <Content Include="Views\ProjectsEntities\Index.cshtml" />
+    <Content Include="Views\TeacherEntities\Login.cshtml" />
+    <Content Include="Views\Shared\_LayoutS.cshtml" />
+    <Content Include="Views\ProjectsEntities\hello.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -270,6 +277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808140937021_DataAnnotaions.resx">
       <DependentUpon>201808140937021_DataAnnotaions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808271820469_DataAnnotations1.resx">
+      <DependentUpon>201808271820469_DataAnnotations1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
