@@ -22,8 +22,68 @@ else
 @*<h2>Index</h2>*@
 
 @*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+
+<div class="container">
+
+    <div class="col-md-2">
+        <ul class="nav nav-pills nav-stacked">
+            <li><a data-toggle="pill" href="#profile">Your Profile</a></li>
+            <li><a data-toggle="pill" href="#projectsearch">Search Projects</a></li>
+        </ul>
+    </div>
+
+    <div class="col-md-10">
+        <div class="tab-content">
+            <div id="profile" class="tab-pane fade in active">
+
+                <div class="container">
+                    <div class="panel ">
+                        <div class="panel-body">
+                            <div class=" col-md-4 text-center">
+                                <img class="img-thumbnail" style="width:200px; height:200px;" src="#" />
+                            </div>
+                            <div class=" col-md-8">
+                                <h2>Teacher NAME</h2>
+                                <p>details..</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Your Projects</h2>
+                <hr />
+                <div class="panel-group">
+                    <div class="panel panel-default" style="width:20rem;">
+                        <div class="panel-heading"><h3>Project title</h3></div>
+                        <div class="panel-body">
+                            <div class="panel-info"><p> helo ae eamf fd rknam f ldsjen sdkles nd dlfkns </p></div>
+                            <a href="#" class="btn btn-primary">click</a>
+                        </div>
+                    </div>
+                    <div class="panel panel-default" style="width:20rem;">
+                        <div class="panel-heading"><h3>Project title</h3></div>
+                        <div class="panel-body">
+                            <div class="panel-info"><p> helo ae eamf fd rknam f ldsjen sdkles nd dlfkns </p></div>
+                            <a href="#" class="btn btn-primary">click</a>
+                        </div>
+                    </div>
+                </div>                                      
+            </div>
+            <div id="projectsearch" class="tab-pane fade">
+                <h3>Projects list which is being offered</h3>
+
+                <p>search functionality Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
 <div class="col-md-2">
     <ul class="nav nav-pills nav-stacked">
         <li>@*@Html.ActionLink("Create Project","Create",)*@ @*<a href="~/ProjectsEntities/Create">Create Project</a>*@</li>
@@ -118,5 +178,5 @@ else
         {
 
         }
-        </tr>
+    </tr>
 </table>
