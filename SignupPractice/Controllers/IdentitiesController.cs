@@ -11,7 +11,8 @@ using SignupPractice.Models;
 namespace SignupPractice.Controllers
 {
     public class IdentitiesController : Controller
-    {
+    { 
+//Ali here
         private IdentityDBContext db = new IdentityDBContext();
         private static int? authorized_user_id = null;
         // GET: Identities
